@@ -4,3 +4,5 @@ pymongo
 numpy
 gunicorn
 opencv-python-headless
+tf-keras
+tensorflow
