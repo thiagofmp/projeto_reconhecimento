@@ -4,6 +4,10 @@ import numpy as np
 import os
 import projeto_repository
 
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3" 
+# Força o TensorFlow a usar apenas a CPU e limitar o uso de memória
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+
 app = Flask(__name__)
 # Chave secreta necessária para usar a função flash()
 app.secret_key = 'super_chave_secreta_para_flash_messages'
