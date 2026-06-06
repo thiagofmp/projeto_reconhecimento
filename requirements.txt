@@ -5,4 +5,4 @@ numpy
 gunicorn
 opencv-python-headless
 tf-keras
-tensorflow
+tensorflow-cpu
