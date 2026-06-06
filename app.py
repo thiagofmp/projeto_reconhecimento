@@ -1,12 +1,12 @@
-from flask import Flask, request, render_template, redirect, url_for, flash
-from deepface import DeepFace
-import numpy as np
 import os
-import projeto_repository
-
+# ATENÇÃO: Estas linhas DEVEM ficar no topo absoluto do arquivo!
+# Elas preparam o terreno antes do TensorFlow sequer pensar em iniciar.
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3" 
-# Força o TensorFlow a usar apenas a CPU e limitar o uso de memória
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+
+from flask import Flask, request, render_template, redirect, url_for, flash
+import numpy as np
+import projeto_repository
 
 app = Flask(__name__)
 # Chave secreta necessária para usar a função flash()
@@ -41,6 +41,9 @@ def cadastrar():
     arquivo.save(caminho_temp)
 
     try:
+        # BOOT LEVE: Importamos o DeepFace APENAS na hora de usar!
+        from deepface import DeepFace
+        
         # Extrai os dados do rosto usando o modelo Facenet
         dados_rosto = DeepFace.represent(img_path=caminho_temp, model_name="Facenet", enforce_detection=True)
         encoding = dados_rosto[0]["embedding"]
@@ -67,6 +70,9 @@ def reconhecer():
     arquivo.save(caminho_temp)
 
     try:
+        # BOOT LEVE: Importamos o DeepFace APENAS na hora de usar!
+        from deepface import DeepFace
+        
         dados_rosto = DeepFace.represent(img_path=caminho_temp, model_name="Facenet", enforce_detection=True)
         encoding_alvo = dados_rosto[0]["embedding"]
         os.remove(caminho_temp)
