@@ -1,8 +1,0 @@
-Flask
-deepface
-pymongo
-numpy
-gunicorn
-Werkzeug
-opencv-python-headless
-tf-keras
